@@ -21,7 +21,7 @@ export default function LandingPage() {
     <LandingContainer>
       <Title isMainTitle text="Welcome!" />
       <MovieIcon>
-        <i class="fas fa-film"></i>
+        <i className="fas fa-film"></i>
       </MovieIcon>
       <Title text="This is a place where anyone with no idea about movies can rate them!" />
       <div>
