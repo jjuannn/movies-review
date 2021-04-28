@@ -19,5 +19,16 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+const { configureContainer } = require("./config/di");
+const container = configureContainer();
+
+const { initReviewModule } = require("./module/review/module");
+
+initReviewModule(app, container);
+
+const database = container.get("Sequelize");
+database.sync();
+
 const PORT = 8080;
 app.listen(process.env.PORT || PORT, console.log(`Listening at port ${PORT}`));
