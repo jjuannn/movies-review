@@ -32,7 +32,6 @@ export default function usePosts() {
   useEffect(() => {
     dispatch({ type: ACTIONS.LOADING });
     const getData = async () => {
-      console.log("ME EJECUTO! ");
       try {
         const apiData = await getReviews();
         dispatch({ type: ACTIONS.SUCCESS, payload: apiData });
