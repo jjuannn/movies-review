@@ -18,6 +18,7 @@ class ReviewController extends AbstractController {
    */
   configureRoutes(app) {
     app.post(`${this.ROUTE_BASE}/create`, this.create.bind(this));
+    app.get(`${this.ROUTE_BASE}/all`, this.getAll.bind(this));
   }
   /**
    *
@@ -27,8 +28,8 @@ class ReviewController extends AbstractController {
   async create(req, res) {
     const { body } = req;
     try {
-      const data = userDataToEntity(body);
-      await this.ReviewService.create(data);
+      const DATA = userDataToEntity(body);
+      await this.ReviewService.create(DATA);
       res.status(201).send("Success!");
     } catch (err) {
       if (err instanceof FailedCreationError) {
@@ -38,6 +39,19 @@ class ReviewController extends AbstractController {
       } else {
         res.status(400).send("Something failed! Try again :/");
       }
+    }
+  }
+  /**
+   *
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   */
+  async getAll(req, res) {
+    try {
+      const REVIEWS = await this.ReviewService.getAll();
+      res.status(200).send({ results: REVIEWS });
+    } catch (err) {
+      res.status(400).send("Failure");
     }
   }
 }

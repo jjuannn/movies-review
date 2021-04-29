@@ -1,5 +1,6 @@
 const AbstractRepository = require("./abstract");
 const FailedCreationError = require("./error/failedCreation");
+const { databaseToEntity } = require("../mapper/review");
 class ReviewRepository extends AbstractRepository {
   /**
    *
@@ -25,6 +26,13 @@ class ReviewRepository extends AbstractRepository {
         "Something failed while creating a review!"
       );
     }
+  }
+  async getAll() {
+    const REVIEWS = await this.ReviewModel.findAll();
+    const MAPPED_REVIEWS = REVIEWS.map((review) => {
+      return databaseToEntity(review);
+    });
+    return MAPPED_REVIEWS;
   }
 }
 

@@ -21,6 +21,10 @@ class ReviewService {
       throw new DataNotMappedError();
     }
   }
+  async getAll() {
+    const REVIEWS = await this.ReviewRepository.getAll();
+    return REVIEWS;
+  }
 }
 
 module.exports = ReviewService;
