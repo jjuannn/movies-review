@@ -64,6 +64,7 @@ export default function AddForm() {
       <Form onSubmit={handleSubmit}>
         <Label>Your name (will be displayed in the review): </Label>
         <Input
+          maxLength="30"
           name="author_name"
           required
           value={authorName}
@@ -71,6 +72,7 @@ export default function AddForm() {
         ></Input>
         <Label>Movie Title</Label>
         <Input
+          maxLength="20"
           name="movie_title"
           required
           value={movieTitle}
@@ -78,6 +80,7 @@ export default function AddForm() {
         ></Input>
         <Label>Your review</Label>
         <Input
+          maxLength="200"
           name="movie_review"
           required
           value={movieReview}
@@ -85,9 +88,9 @@ export default function AddForm() {
         ></Input>
         <Label>Rating</Label>
         <Input
-          // validar que los campos sean obligatorios y agrgegar un maximo para el rating
           name="rating"
           value={rating}
+          maxLength="2"
           max="10"
           min="0"
           required
@@ -95,7 +98,7 @@ export default function AddForm() {
           type="number"
         ></Input>
         {error && <ErrorMessage>{error.message}</ErrorMessage>}
-        {redirect && <Redirect to="/" />}
+        {redirect && <Redirect to="/reviews/list" />}
         <Button withMargin margin="10px 0px" text="submit" />
       </Form>
     </>
