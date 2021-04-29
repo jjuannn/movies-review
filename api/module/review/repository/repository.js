@@ -28,7 +28,7 @@ class ReviewRepository extends AbstractRepository {
     }
   }
   async getAll() {
-    const REVIEWS = await this.ReviewModel.findAll();
+    const REVIEWS = await this.ReviewModel.findAll({ order: [["id", "DESC"]] });
     const MAPPED_REVIEWS = REVIEWS.map((review) => {
       return databaseToEntity(review);
     });
